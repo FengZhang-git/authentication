@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order Toppings</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style media="screen">
+          ul,li {
+            font-family: Verdana,Arial,Helvetica,sans-serif;
+          }
+          body {
+            padding: 10px;
+          }
+        </style>
+        <script type="text/javascript">
+
+      			function createOrder(){
+      				topping=document.forms[0].topping;
+      				text="";
+              count = 0;
+      				for (i=0;i<topping.length;++ i){
+      					if (topping[i].checked){
+      					       text=text + topping[i].value + " ";
+                       count++;
+      					}
+      				}
+              const status = document.querySelector("#status");
+              const submit = document.querySelector("#submit");
+              const order = document.querySelector("#order");
+              if (count === {{ topping_count }}) {
+                  submit.disabled = false;
+                  status.innerHTML = "Choices Available.";
+                  status.style.color = "green";
+                  order.value = JSON.stringify(text);
+              } else if (count > {{ topping_count }}) {
+                submit.disabled = true;
+                status.innerHTML = "Too more choices.";
+                status.style.color = "red";
+                order.value = JSON.stringify(text);
+              } else {
+                submit.disabled = true;
+                status.innerHTML = "Too less choices.";
+                status.style.color = "red";
+                order.value = JSON.stringify(text);
+              }
+      			}
+		</script>
+    </head>
+    <body>
+        <h1>You have to choose {{ topping_count}} topping(s) of your pizza</h1>
+        <h2>Toppings:</h2>
+        <form action="{% url 'ordertopping' %}" method="post">
+            {% csrf_token %}
+            <ul>
+                {% for topping in Toppings %}
+                    <li>
+                      <input type="checkbox" name="topping" value="{{ topping.id }}">{{ topping.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <input type="button" onclick="createOrder()" value="Select" class="btn btn-primary"><br /><br />
+            <div id="status">Choose toppings.</div>
+            <input type="text" id="order" name="order">
+            <input type="submit" id ="submit" value="Submit" class="btn btn-primary" disabled>
+        </form>
+
+    </body>
+
+
+</html>

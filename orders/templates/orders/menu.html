@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Menu</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'orders/styles.css' %}">
+
+    </head>
+    <body>
+      <div id="header">
+        <table width="100%" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td class="green" width="20%">&nbsp;</td>
+              <td width="60%">
+          <img height="140" src="{% static 'images/pinocchio_72.gif' %}" alt="pinocchio"/>
+                <h1>Pinocchio's Pizza &amp; Subs</h1>
+                <h2>321 Tuqiang Street<br />
+                Software School, DUT<br />
+                0411-62274389 </h2>
+              </td>
+              <td class="red" width="20%">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+        <ul>
+            <li>Currently logged in as: {{ user.username }}</li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+        <h1>Our Menu</h1>
+        <nav class="navbar sticky-top navbar-light bg-light justify-content-end" >
+            <ul class="nav nav-pills nav-fill">
+               <li class="nav-item">
+                 <a class="nav-link" href="#Regular">Regular Pizza</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="#Sicilian">Sicilian Pizza</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="#Topping">Toppings</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#Sub">Subs</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#Pasta">Pasta</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#Salad">Salads</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#Dinner">Dinner Platters</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#Cart">Mycart</a>
+               </li>
+            </ul>
+        </nav>
+
+        <div id="Regular">
+          <h2>Regular Pizza:</h2>
+          <ul>
+              {% for food in Regular_Pizza %}
+                  <li>
+                    <a href="{% url 'food' food.id %}">{{ food }}</a>
+                  </li>
+              {% endfor %}
+          </ul>
+        </div>
+        <div id="Sicilian">
+          <h2>Sicilian Pizza:</h2>
+          <ul>
+              {% for food in Sicilian_Pizza %}
+                  <li>
+                    <a href="{% url 'food' food.id %}">{{ food }}</a>
+                  </li>
+              {% endfor %}
+          </ul>
+        </div>
+        <div id="Topping">
+          <h2>Toppings:</h2>
+          <ul>
+              {% for food in Topping %}
+                  <li>
+                    <!-- <a href="{% url 'food' food.id %}">{{ food }}</a> -->
+                    {{ food }}
+                  </li>
+              {% endfor %}
+          </ul>
+        </div>
+        <div id="Sub">
+          <h2>Subs:</h2>
+          <ul>
+              {% for food in Sub %}
+                  <li>
+                    <a href="{% url 'food' food.id %}">{{ food }}</a>
+                  </li>
+              {% endfor %}
+          </ul>
+        </div>
+        <div id="Pasta">
+          <h2>Pasta:</h2>
+          <ul>
+              {% for food in Pasta %}
+                  <li>
+                    <a href="{% url 'food' food.id %}">{{ food }}</a>
+                  </li>
+              {% endfor %}
+          </ul>
+        </div>
+        <div id="Salad">
+          <h2>Salads:</h2>
+          <ul>
+              {% for food in Salad %}
+                  <li>
+                    <a href="{% url 'food' food.id %}">{{ food }}</a>
+                  </li>
+              {% endfor %}
+          </ul>
+        </div>
+        <div id="Dinner">
+          <h2>Dinner Platters:</h2>
+          <ul>
+              {% for food in Dinner_Platter %}
+                  <li>
+                    <a href="{% url 'food' food.id %}">{{ food }}</a>
+                  </li>
+              {% endfor %}
+          </ul>
+        </div>
+        <hr>
+        <a href="{% url 'cart' %}" class="btn btn-primary btn-lg" id="Cart">Mycart</a>
+
+
+    </body>
+</html>

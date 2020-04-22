@@ -1,0 +1,11 @@
+{% extends "orders/base.html" %}
+
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block body %}
+    <h1>{{ message }}</h1>
+    <a href="{% url 'index'%}" class="btn btn-primary">Back to menu</a>
+{% endblock %}

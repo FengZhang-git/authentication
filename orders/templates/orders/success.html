@@ -1,0 +1,12 @@
+{% extends "orders/base.html" %}
+
+
+{% block title %}
+    Paid Successfully
+{% endblock %}
+
+{% block body %}
+    <h1>Thank you! You have paid successfully. </h1>
+    <h2>We will deliver food to you as soon as possible.</h2>
+    <a href="{% url 'index'%}" class="btn btn-primary" style="padding:15px">Back to menu</a>
+{% endblock %}

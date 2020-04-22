@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://js.stripe.com/v3/"></script>
+    </head>
+    <body>
+      <form action="{% url 'success' %}" method="POST" id="payment-form">
+        {% csrf_token %}
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="pk_test_WZSzrRkRqf6afUyPUIc1HOte00o8C4rKgH"
+          data-amount="{{ total }}"
+          data-name="{{user.username }}"
+          data-description="Example charge"
+          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          data-locale="auto">
+        </script>
+      </form>
+
+
+    </body>
+</html>

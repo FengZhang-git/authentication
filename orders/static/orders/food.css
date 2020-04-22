@@ -1,0 +1,10 @@
+
+h1,h2 { font-family: Verdana,Arial,Helvetica,sans-serif; margin: 0;}
+ul,li {
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  padding: 5px;
+  font-size: 15px
+}
+body {
+  padding: 20px;
+}

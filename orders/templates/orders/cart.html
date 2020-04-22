@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cart</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'orders/food.css' %}">
+        <script type="text/javascript">
+
+      			function createOrder(){
+      				order=document.forms[0].order;
+      				text="";
+
+      				for (i=0;i<order.length;++ i){
+      					if (order[i].checked){
+      					       text=text + order[i].value + " ";
+      					}
+      				}
+              const status = document.querySelector("#status");
+              const submit = document.querySelector("#submit");
+              const option = document.querySelector("#option");
+              if (text === "") {
+                submit.disabled = true;
+                status.innerHTML = "You don't choose anything.";
+                status.style.color = "red";
+              } else {
+                submit.disabled = false;
+                status.innerHTML = "If you confirm choices, please click the following button.";
+                status.style.color = "green";
+                option.value = JSON.stringify(text);
+              }
+
+
+      			}
+		</script>
+    </head>
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">{{ user.username }}'s Cart </h1>
+          </div>
+        </div>
+        <h2>Your current orders:</h2>
+        <form class="" action="{% url 'delete' %}" method="post">
+          {% csrf_token %}
+          <ul>
+              {% for order in currentOrders %}
+                  <li>
+                    <input type="checkbox" name="order" value="{{ order.id }}">
+                     Order_id{{ order.id }}:  {{ order.number }}  {{ order.food }}.
+                     Total:{{ order.total }}$
+                     Status: {{ order.status }}.  {{ order.date }}
+                  </li>
+              {% empty %}
+                  <li>No orders.</li>
+              {% endfor %}
+          </ul>
+          <h2>Total: {{ total }}$</h2>
+
+          <!-- <input type="button" onclick="createOrder()" value="Pay"><br /><br /> -->
+
+          <div class="">
+            <div id="status">Choose orders to delete.</div>
+            <input type="button" onclick="createOrder()" value="Delete" class="btn btn-primary">
+            <input type="text" id="option" name="option">
+            <input type="submit" id ="submit" class="btn btn-primary" value="Confirm Again"  disabled>
+          </div>
+        </form>
+
+        <hr>
+        <a href="{% url 'checkout' %}" class="btn btn-primary">Pay for now</a>
+        <hr>
+        <h2>History orders:</h2>
+        <ul>
+            {% for order in historyOrders %}
+              <li>
+                 Order_id{{ order.id }}:  {{ order.number }}  {{ order.food }}.
+                 Total:{{ order.total }}$
+                 Status: {{ order.status }}.  {{ order.date }}
+              </li>
+            {% empty %}
+              <li>No orders.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'index'%}" class="btn btn-primary">Back to menu</a>
+    </body>
+
+
+</html>
