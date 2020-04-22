@@ -1,0 +1,42 @@
+{% extends "users/base.html" %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Welcome! Please register. </h1>
+      </div>
+    </div>
+    {% if message %}
+        <div style="color:red">
+            {{ message }}
+        </div>
+    {% endif %}
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Username:</span>
+          </div>
+          <input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Password:</span>
+          </div>
+          <input name="password" type="password" class="form-control"/>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Email:</span>
+          </div>
+          <input name="email" type="email" class="form-control"/>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Register"/>
+    </form>
+    <br>
+    <p>
+      <a href="{% url 'logining' %}" class="btn btn-primary" >Or Login</a>
+    </p>
+
+{% endblock %}
