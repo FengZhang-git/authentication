@@ -17,7 +17,7 @@ In this project, I build an web application for handling a pizza restaurant’s 
 ## Methods to start
 1. Download the source files from here and then run `python manage.py runserver`
 2. Superuser: username:zhangfeng,password:zhangfeng
-3. You can register a new account or log in as feng(pw=feng)
+3. You can register a new account or log in as feng(pw=1234)
 
 ## Details
 - **Menu:** My web application support all of the available menu items for [Pinnochio’s Pizza & Subs ](http://www.pinocchiospizza.net/menu.html)(a popular pizza place in Cambridge). I add my models to `orders/models.py`, make the necessary migration files, and apply those migrations.
