@@ -1,5 +1,5 @@
-# Final-Project
-
+# Final-Project  
+[![](https://travis-ci.org/FengZhang-git/authentication.svg?branch=master)](https://travis-ci.org/FengZhang-git/authentication)  
 Web Programming with Python and JavaScript
 
 ## Overview
